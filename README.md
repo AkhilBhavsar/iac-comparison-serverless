@@ -12,4 +12,4 @@ Folders:
 - `ci/` : GitHub Actions workflows for Terraform and CloudFormation
 - `research/` : scripts for collecting metrics and analyzing results
 
-Follow the project guide in the research assignment to run experiments and collect metrics.
+
