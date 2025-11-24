@@ -1,0 +1,49 @@
+name: CloudFormation CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "cloudformation/**"
+      - "lambda-src/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Build Lambda zip
+        run: |
+          cd lambda-src/hello
+          npm ci --omit=dev
+          zip -r ../../hello.zip .
+
+      - name: Upload Lambda zip to S3
+        run: |
+          aws s3 cp hello.zip s3://${{ secrets.LAMBDA_BUCKET }}/hello.zip
+
+      - name: Sync nested CloudFormation templates to S3
+        run: |
+          aws s3 sync cloudformation/nested s3://${{ secrets.CF_S3_BUCKET }}/cloudformation/nested
+
+      - name: Deploy root CloudFormation stack
+        run: |
+          aws cloudformation deploy \
+            --stack-name demo-root-stack \
+            --template-file cloudformation/root-stack.yaml \
+            --parameter-overrides LambdaS3Bucket=${{ secrets.LAMBDA_BUCKET }} LambdaS3Key=hello.zip \
+            --capabilities CAPABILITY_NAMED_IAM
