@@ -10,6 +10,8 @@ Resources:
           Value: cf-vpc
         - Key: Team
           Value: networking-B
+        - Key: Team
+          Value: networking-parallel-A
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
