@@ -53,7 +53,7 @@ resource "aws_lambda_function" "this" {
   environment {
     variables = {
       TABLE_NAME = var.table_name
-      VERSION    = "v2"        # <-- NEW (was not there before)
+      VERSION    = "parallel-A"        # <-- NEW (was not there before)
     }
   }
   
