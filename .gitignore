@@ -1,0 +1,8 @@
+# local
+node_modules/
+hello.zip
+.terraform/
+terraform.tfstate
+*.tfstate.*
+.vscode/
+.DS_Store

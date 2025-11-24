@@ -1,0 +1,9 @@
+{
+  "name": "hello-lambda",
+  "version": "1.0.0",
+  "description": "Simple Lambda for IaC comparison",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.1350.0"
+  }
+}

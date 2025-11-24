@@ -1,0 +1,1 @@
+{"statusCode":500,"body":"{\"ok\":false,\"error\":\"User: arn:aws:sts::522814714524:assumed-role/demo-root-stack-AppStack-2XAVLU-LambdaExecutionRole-R8WjbeoXJUQf/demo-hello-cf is not authorized to perform: dynamodb:PutItem on resource: arn:aws:dynamodb:eu-west-1:522814714524:table/demo-table-cf because no identity-based policy allows the dynamodb:PutItem action\"}"}

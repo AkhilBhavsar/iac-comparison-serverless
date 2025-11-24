@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Root stack to create nested stacks for serverless demo
+Parameters:
+  LambdaS3Bucket:
+    Type: String
+  LambdaS3Key:
+    Type: String
+Resources:
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://iac-cf-templates-ca2-2025.s3.eu-west-1.amazonaws.com/cloudformation/nested/vpc.yaml
+
+  DBStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://iac-cf-templates-ca2-2025.s3.eu-west-1.amazonaws.com/cloudformation/nested/db.yaml
+
+  AppStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://iac-cf-templates-ca2-2025.s3.eu-west-1.amazonaws.com/cloudformation/nested/app.yaml
+      Parameters:
+        LambdaS3Bucket: !Ref LambdaS3Bucket
+        LambdaS3Key: !Ref LambdaS3Key
+        TableName: !GetAtt DBStack.Outputs.TableName
+Outputs:
+  Info:
+    Value: "Root stack created nested stacks"

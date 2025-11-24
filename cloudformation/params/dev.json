@@ -1,0 +1,4 @@
+{
+  "LambdaS3Bucket": "iac-lambda-artifacts-ca2-2025",
+  "LambdaS3Key": "hello.zip"
+}
