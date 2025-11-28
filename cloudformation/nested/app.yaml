@@ -46,7 +46,7 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !Ref TableName
-          VERSION: "v2"   # NEW
+          VERSION: "cf-ci-single"   # NEW
           OWNER: "app-team"
 
 Outputs:
