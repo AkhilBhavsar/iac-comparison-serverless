@@ -7,3 +7,6 @@ terraform,update,dev,apply,1763751833,1763751853,20,NA,0,tf-update
 cloudformation,baseline,dev,update-test,1763993567,1763993604,37,NA,0,cf-update-baseline
 cloudformation,baseline,dev,update-test,1763994348,1763994386,38,NA,0,cf-update-baseline
 cloudformation,parallel,dev,update-test,1763994350,1763994387,37,NA,0,cf-update-success
+cloudformation,ci,dev,deploy-single,NA,NA,1.28,NA,0,cf-ci-single
+cloudformation,ci,dev,deploy-parallel-a,NA,NA,59,NA,0,cf-parallel-a
+cloudformation,ci,dev,deploy-parallel-b,NA,NA,22,NA,1,cf-parallel-b
